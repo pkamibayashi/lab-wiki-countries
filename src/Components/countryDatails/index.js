@@ -4,7 +4,6 @@ import countries from '../../countries.json';
 
 export function CountryDetails() {
   const params = useParams();
-  // console.log(params.alpha3Code);
 
   const pais = countries.filter((country) => {
     return country.alpha3Code === params.alpha3Code;
@@ -13,18 +12,22 @@ export function CountryDetails() {
   const paisArray = [pais];
 
   const divisadePais = paisArray.map((capital) => {
-    const bordas = capital.borders;
-    for (let i = 0; i < bordas.length; i++) {
-      const alpha3CodeToName = bordas[i];
+    return capital.borders;
+  })[0];
+
+  console.log(`EU sou uma abreviação ----> ${divisadePais}`);
+
+  const resultado = countries.filter((pais) => {
+    let paisCompleto = [];
+    for (let i = 0; i < divisadePais.length; i++) {
+      if (pais.alpha3Code === divisadePais[i]) {
+        paisCompleto.push(pais.name.common);
+      }
     }
-    return alpha3CodeToName;
+    return paisCompleto;
   });
 
-  console.log(divisadePais);
-
-  // const divisa = countries.filter((country) => {
-  //   country.alpha3Code === alpha3CodeToName;
-  // });
+  console.log(`Eu sou o pais completo ---> ${resultado}`);
 
   return (
     <>
