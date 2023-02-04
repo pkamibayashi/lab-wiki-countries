@@ -1,14 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import { CountriesList } from '../src/Components/countriesList/index';
-import countries from '../src/countries.json';
+
 import { Navbar } from './Components/navbar';
+import { CountryDetails } from './Components/countryDatails';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <CountriesList />
-      <Routes></Routes>
+      <Routes>
+        <Route path="/:alpha3Code" element={<CountryDetails />}></Route>
+      </Routes>
     </div>
   );
 }
