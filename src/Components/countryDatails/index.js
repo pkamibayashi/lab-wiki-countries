@@ -17,17 +17,16 @@ export function CountryDetails() {
 
   console.log(`EU sou uma abreviação ----> ${divisadePais}`);
 
-  const resultado = countries.filter((pais) => {
-    let paisCompleto = [];
-    for (let i = 0; i < divisadePais.length; i++) {
-      if (pais.alpha3Code === divisadePais[i]) {
-        paisCompleto.push(pais.name.common);
+  const resultado = countries.reduce((acumulador, pais) => {
+    divisadePais.forEach((divisa) => {
+      if (pais.alpha3Code.includes(divisa)) {
+        acumulador.push(pais.name.common);
       }
-    }
-    return paisCompleto;
-  });
+    });
+    return acumulador;
+  }, []);
 
-  console.log(`Eu sou o pais completo ---> ${resultado}`);
+  console.log({ resultado });
 
   return (
     <>
