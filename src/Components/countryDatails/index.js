@@ -38,43 +38,41 @@ export function CountryDetails() {
   }, []);
 
   return (
-    <>
-      <div className="col-7">
-        <h1>{pais.name.common}</h1>
-        <table className="table">
-          <thead></thead>
-          <tbody>
-            <tr>
-              <td style={{ width: '30%' }}>Capital</td>
-              <td>{pais.capital[0]}</td>
-            </tr>
-            <tr>
-              <td>Area</td>
-              <td>
-                {pais.area} km
-                <sup>2</sup>
-              </td>
-            </tr>
-            <tr>
-              <td>Borders</td>
-              <td>
-                <ul>
-                  {resultado.map((paises) => {
-                    return (
-                      <>
-                        <li>
-                          <Link to={`/${conversor(paises)}`}>{paises}</Link>
-                        </li>
-                      </>
-                    );
-                  })}
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </>
+    <div className="col-7">
+      <h1>{pais.name.common}</h1>
+      <table className="table">
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td style={{ width: '30%' }}>Capital</td>
+            <td>{pais.capital[0]}</td>
+          </tr>
+          <tr>
+            <td>Area</td>
+            <td>
+              {pais.area} km
+              <sup>2</sup>
+            </td>
+          </tr>
+          <tr>
+            <td>Borders</td>
+            <td>
+              <ul>
+                {resultado.map((paises) => {
+                  return (
+                    <>
+                      <li>
+                        <Link to={`/${conversor(paises)}`}>{paises}</Link>
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
