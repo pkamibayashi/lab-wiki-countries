@@ -10,12 +10,23 @@ export function CountryDetails() {
   })[0];
 
   const paisArray = [pais];
+  console.log(paisArray);
 
+  // Localiza abreviação da borda
   const divisadePais = paisArray.map((capital) => {
     return capital.borders;
   })[0];
 
   console.log(`EU sou uma abreviação ----> ${divisadePais}`);
+
+  // Converte a abreviação da borda para o nome full
+  function conversor(divisaPais) {
+    const pais = countries.find((country) => {
+      return country.name.common === divisaPais;
+    });
+
+    return pais.alpha3Code;
+  }
 
   const resultado = countries.reduce((acumulador, pais) => {
     divisadePais.forEach((divisa) => {
@@ -25,8 +36,6 @@ export function CountryDetails() {
     });
     return acumulador;
   }, []);
-
-  console.log({ resultado });
 
   return (
     <>
@@ -49,7 +58,17 @@ export function CountryDetails() {
             <tr>
               <td>Borders</td>
               <td>
-                <ul>{/* AQUI os LI */}</ul>
+                <ul>
+                  {resultado.map((paises) => {
+                    return (
+                      <>
+                        <li>
+                          <Link to={`/${conversor(paises)}`}>{paises}</Link>
+                        </li>
+                      </>
+                    );
+                  })}
+                </ul>
               </td>
             </tr>
           </tbody>
@@ -58,3 +77,7 @@ export function CountryDetails() {
     </>
   );
 }
+
+// <li>
+//   <a href="/CHE">Switzerland</a>
+// </li>;
