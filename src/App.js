@@ -9,10 +9,20 @@ function App() {
     <div className="App">
       <div className="row">
         <Navbar />
-        <CountriesList />
-        <Routes>
-          <Route path="/:alpha3Code" element={<CountryDetails />}></Route>
-        </Routes>
+        <div className="allContainer">
+          <CountriesList />
+
+          <Routes>
+            <Route
+              path="/:alpha3Code"
+              element={
+                <div className="datails">
+                  <CountryDetails />
+                </div>
+              }
+            ></Route>
+          </Routes>
+        </div>
       </div>
     </div>
   );
